@@ -1,0 +1,21 @@
+[
+  {
+    "name": "mmoreira6",
+    "master": true,
+    "password_hash": "$2a$11$R8WGpdn4DGVofgDu3PNh1uw6eDzyTcOrNvN8VVr3NL1Y3DwVvz.BO",
+    "providers": {
+      "citizenfx": {
+        "id": "mmoreira6",
+        "identifier": "fivem:7224737",
+        "data": {
+          "sub": "5077c397ffdbb82eaa6a917eae06c8f6",
+          "nameid": "https://forum.cfx.re/internal/user/7224737",
+          "name": "mmoreira6",
+          "picture": "https://forum.cfx.re/user_avatar/forum.cfx.re/mmoreira6/256/2644211_2.png",
+          "profile": "https://forum.cfx.re/u/mmoreira6"
+        }
+      }
+    },
+    "permissions": []
+  }
+]

@@ -1,0 +1,10 @@
+
+================================================================
+======== txAdmin Starting - 05/07/2022, 22:24:32                
+================================================================
+[22:24:54] [mmoreira6] created admins file
+[22:25:12] [mmoreira6] Changing global settings via setup stepper and started Deployer.
+[22:25:23] [mmoreira6] Setting recipe.
+[22:26:28] [mmoreira6] Running recipe.
+[22:30:44] [mmoreira6] Configured server.cfg from deployer.
+[22:30:44] [mmoreira6] Completed and committed server deploy.
