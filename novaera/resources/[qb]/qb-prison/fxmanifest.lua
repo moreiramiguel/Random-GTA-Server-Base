@@ -2,7 +2,7 @@ fx_version 'cerulean'
 game 'gta5'
 
 description 'QB-Prison'
-version '2.0.0'
+version '1.0.0'
 
 shared_scripts {
     '@qb-core/shared/locale.lua',
@@ -12,11 +12,6 @@ shared_scripts {
 
 
 client_scripts {
-	'@PolyZone/client.lua',
-    '@PolyZone/BoxZone.lua',
-    '@PolyZone/EntityZone.lua',
-    '@PolyZone/CircleZone.lua',
-    '@PolyZone/ComboZone.lua',
 	'client/main.lua',
 	'client/jobs.lua',
 	'client/prisonbreak.lua'
@@ -24,5 +19,4 @@ client_scripts {
 
 server_script 'server/main.lua'
 
-use_fxv2_oal 'yes'
 lua54 'yes'

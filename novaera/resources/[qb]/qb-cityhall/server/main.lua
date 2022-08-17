@@ -1,11 +1,13 @@
 local QBCore = exports['qb-core']:GetCoreObject()
 local availableJobs = {
-    ["trucker"] = "Trucker",
+    ["trucker"] = "Camionista",
     ["taxi"] = "Taxi",
-    ["tow"] = "Tow Truck",
-    ["reporter"] = "News Reporter",
-    ["garbage"] = "Garbage Collector",
-    ["bus"] = "Bus Driver",
+    ["tow"] = "Reboque",
+    ["reporter"] = "CNN",
+    ["garbage"] = "Lixeiro",
+    ["bus"] = "Motorista (Autocarros)",
+    ["miner"] = "Mineiro",
+    ["lumberjack"] = "Lenhador",
 }
 
 -- Functions

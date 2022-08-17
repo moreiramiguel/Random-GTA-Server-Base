@@ -96,37 +96,7 @@ Config.TargetModels = {
 			},
 		},
 		distance = 3.0
-	},/*
-	["AircraftRental"] = {
-		models = {
-			`s_m_y_airworker`,
-		},
-		options = {
-			{
-				type = "client",
-				event = "qb-rental:client:openMenu",
-				icon = "fas fa-plane",
-				label = "Rent Aircraft",
-				MenuType = "aircraft"
-			},
-		},
-		distance = 3.0
 	},
-	["Boatrental"] = {
-		models = {
-			`mp_m_boatstaff_01`,
-		},
-		options = {
-			{
-				type = "client",
-				event = "qb-rental:client:openMenu",
-				icon = "fas fa-ship",
-				label = "Rent Boat",
-				MenuType = "boat"
-			},
-		},
-		distance = 3.0
-	},*/
 	["BIN"] = {
         models = {
             "prop_dumpster_01a", 
@@ -145,6 +115,63 @@ Config.TargetModels = {
             },
         },
         distance = 3.0
+    },
+	    ["prisonslushy"] = {
+        name = "prisonslushy",
+        coords = vector3(1777.66, 2560.07, 45.67),
+        length = 0.6,
+        width = 0.6,
+        heading = 0,
+        debugPoly = false,
+		minZ = 45.67,
+		maxZ = 46.67,
+        options = {
+			{
+                type = "client",
+                event = "qb-prison:client:slushy",
+                icon = "fas fa-wine-bottle",
+                label = "Make Slushy",
+            },
+        },
+        distance = 1.5
+    },
+	["prisontime"] = {
+        name = "prisontime",
+        coords = vector3(1827.3, 2587.72, 46.01),
+        length = 0.45,
+        width = 0.55,
+        heading = 0,
+        debugPoly = false,
+		minZ = 46.11,
+		maxZ = 47.01,
+        options = {
+			{
+                type = "client",
+                event = "qb-prison:client:checkTime",
+                icon = "fas fa-user-clock",
+                label = "Check Jail Time",
+            },
+        },
+        distance = 1.5
+    },
+	["prisoncanteen"] = {
+        name = "prisoncanteen",
+        coords = vector3(1783.12, 2559.56, 45.67),
+        length = 0.4,
+        width = 0.55,
+        heading = 0,
+        debugPoly = false,
+		minZ = 45.62,
+		maxZ = 46.07,
+        options = {
+			{
+                type = "client",
+                event = "qb-prison:client:useCanteen",
+                icon = "fas fa-utensils",
+                label = "Open Canteen",
+            },
+        },
+        distance = 1.5
     },
 
 }

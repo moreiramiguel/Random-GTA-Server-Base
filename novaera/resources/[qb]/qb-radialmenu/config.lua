@@ -634,7 +634,15 @@ Config.JobInteractions = {
                     type = 'client',
                     event = 'police:client:JailPlayer',
                     shouldClose = true
+                }, {
+                    id = 'markvehicle',
+                    title = 'Reboque',
+                    icon = 'toggle-on',
+                    type = 'client',
+                    event = 'qb-tow:client:markVehicle',
+                    shouldClose = true
                 }
+                
             }
         }, {
             id = 'policeobjects',

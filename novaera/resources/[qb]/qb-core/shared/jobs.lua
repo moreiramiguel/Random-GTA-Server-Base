@@ -280,4 +280,26 @@ QBShared.Jobs = {
             },
         },
 	},
+    ['miner'] = {
+		label = 'Mineiro',
+		defaultDuty = true,
+		offDutyPay = false,
+		grades = {
+            ['0'] = {
+                name = 'Efectivo',
+                payment = 50
+            },
+        },
+	},
+    ['lumberjack'] = {
+		label = 'Lenhador',
+		defaultDuty = true,
+		offDutyPay = false,
+		grades = {
+            ['0'] = {
+                name = 'Efectivo',
+                payment = 50
+            },
+        },
+	},
 }
