@@ -29,6 +29,27 @@ QBShared.Gangs = {
             },
         },
 	},
+    ['vipers'] = {
+		label = 'Vipers',
+		grades = {
+            ['0'] = {
+                name = 'Recruta'
+            },
+			['1'] = {
+                name = 'Oficial'
+            },
+            ['2'] = {
+                name = 'Sargento de Armas'
+            },
+			['3'] = {
+                name = 'Vice-Chefe'
+            },
+			['4'] = {
+                name = 'Chefe',
+				isboss = true
+            },
+        },
+	},
 	['ballas'] = {
 		label = 'Ballas',
 		grades = {
@@ -113,23 +134,20 @@ QBShared.Gangs = {
             },
         },
 	},
-	['triads'] = {
-		label = 'Triads',
+	['tuners'] = {
+		label = 'Tuners',
 		grades = {
             ['0'] = {
                 name = 'Recruta'
             },
-			['1'] = {
-                name = 'Morador'
-            },
-            ['2'] = {
+            ['1'] = {
                 name = 'Oficial'
             },
-			['3'] = {
+			['2'] = {
                 name = 'Braço Direito'
             },
-			['4'] = {
-                name = 'Chefe',
+			['3'] = {
+                name = 'Patrão',
 				isboss = true
             },
         },

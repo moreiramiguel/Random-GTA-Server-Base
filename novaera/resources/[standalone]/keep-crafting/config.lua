@@ -340,6 +340,42 @@ Config.workbenches = {
           recipes = { misc_recipe, medial },
           radius = 3.0
      },
+     { --ballas
+          table_model = 'gr_prop_gr_bench_04b',
+          coords = vector3(78.28, -1977.19, 19.89),
+          item_show_case_offset = vector3(0.0, 0.0, 1.3),
+          rotation = vector3(0.0, 0.0, 50.0),
+          job = {
+               allowed_list = {},
+               allowed_grades = {}
+          },
+          gang = {
+                     allowed_list = {'ballas'},
+                     allowed_grades = {}
+                },
+          categories = { Config.categories.misc, Config.categories.medical },
+          recipes = { misc_recipe, medial },
+          radius = 3.0
+     },
+     { --vagos
+          table_model = 'gr_prop_gr_bench_04a',
+          coords =  vector3(438.20, -1893.86, 29.30),
+          item_show_case_offset = vector3(0.0, 0.0, 2.3),
+          rotation = vector3(0.0, 0.0, 130.0),
+          job = {
+               allowed_list = {},
+               allowed_grades = {}
+          },
+          gang = {
+                     allowed_list = {'vagos'},
+                     allowed_grades = {}
+                },
+          categories = { Config.categories.misc, Config.categories.medical },
+          recipes = { misc_recipe, medial },
+          radius = 3.0
+     },
+
+
      -- gun
      {
           table_model = 'gr_prop_gr_bench_02b',

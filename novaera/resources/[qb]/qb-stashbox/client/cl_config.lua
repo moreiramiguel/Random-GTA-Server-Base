@@ -55,20 +55,31 @@ Config.JobStashZones = {
 
 Config.GangStash = {
     ['lostmc'] = {
-        vector3(0, 0, 0),
+        vector3(986.95, -92.95, 74.85),
+        vector3(987.88, -137.58, 73.09),
     },
     ['ballas'] = {
-        vector3(106.15, -1926.2, 20.8),
+        vector3(80.2, -1980.01, 20.89),
+        vector3(95.02, -1982.54, 20.44),
+  
     },
     ['vagos'] = {
-        vector3(0, 0, 0),
+        vector3(436.04, -1889.34, 31.74),
+        vector3(447.02, -1895.98, 31.74),
     },
     ['cartel'] = {
-        vector3(0, 0, 0),
+        vector3(1402.58, 1107.42, 114.83),
+        vector3(1413.01, 1107.9, 114.83),
+    },
+    ['vipers'] = {
+        vector3(1987.61, 3046.62, 50.5),
+        vector3(1994.4, 3043.1, 47.21),
     },
     ['families'] = {
         vector3(0, 0, 0),
     },
+
+   
 }
 
 Config.GangStashZones = {

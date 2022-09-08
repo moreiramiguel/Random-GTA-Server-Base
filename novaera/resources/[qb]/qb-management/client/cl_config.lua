@@ -47,17 +47,21 @@ Config.BossMenuZones = {
 
 Config.GangMenus = {
     ['lostmc'] = {
-        vector3(-472.07, 270.47, 83.22),
+        vector3(977.13, -104.11, 74.85),
     },
     ['ballas'] = {
-        vector3(0,0, 0),
+        vector3(77.02, -1964.49, 21.12),
     },
     ['vagos'] = {
-        vector3(0, 0, 0),
+        vector3(432.89, -1885.18, 31.74),
     },
     ['cartel'] = {
-        vector3(0, 0, 0),
+        vector3(1394.52, 1160.21, 114.46),
     },
+    ['vipers'] = {
+        vector3(1993.76, 3045.29, 50.51),
+    },
+    
     ['families'] = {
         vector3(0, 0, 0),
     },
@@ -69,4 +73,19 @@ Config.GangMenuZones = {
         { coords = vector3(0.0, 0.0, 0.0), length = 0.0, width = 0.0, heading = 0.0, minZ = 0.0, maxZ = 0.0 },
     },
     ]]
+    ['cartel'] = {
+        { coords = vector3(1394.52, 1160.21, 114.46), length = 2.0, width = 2.0, heading = 10.0, minZ = 104.0, maxZ = 118.0 },
+    },
+    ['ballas'] = {
+        { coords =vector3(77.02, -1964.49, 21.12), length = 2.0, width = 2.0, heading = 10.0, minZ = 11.0, maxZ = 27.0 },
+    },
+    ['vagos'] = {
+        { coords =vector3(432.89, -1885.18, 31.74), length = 2.0, width = 2.0, heading = 10.0, minZ = 30.0, maxZ = 35.0 },
+    },
+    ['lostmc'] = {
+        { coords =vector3(977.13, -104.11, 74.85), length = 2.0, width = 2.0, heading = 10.0, minZ = 56.0, maxZ = 61.0 },
+    },
+    ['vipers'] = {
+        { coords =vector3(1993.76, 3045.29, 50.51), length = 2.0, width = 2.0, heading = 10.0, minZ = 49.0, maxZ = 55.0 },
+    },
 }
