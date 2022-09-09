@@ -9,6 +9,25 @@ local DynamicMenuItems = {}
 local FinalMenuItems = {}
 -- Functions
 
+local function mdt()
+    if QBCore.Functions.GetPlayerData().job.name == "police" then
+        mdtid = exports['qb-radialmenu']:AddOption({
+            id = 'mdt',
+            title = 'Mdt',
+            icon = 'tablet',
+            type = 'command',
+            event = 'mdt',
+            shouldClose = true
+        }, mdtid)
+    else
+        if mdtid ~= nil then
+            exports['qb-radialmenu']:RemoveOption(mdtid)
+            mdtid = nil
+        end
+    end
+end
+
+
 local function deepcopy(orig) -- modified the deep copy function from http://lua-users.org/wiki/CopyTable
     local orig_type = type(orig)
     local copy
@@ -61,7 +80,7 @@ local function SetupJobMenu()
         icon = 'briefcase',
         items = {}
     }
-    if Config.JobInteractions[PlayerData.job.name] and next(Config.JobInteractions[PlayerData.job.name]) and PlayerData.job.onduty then
+    if Config.JobInteractions[PlayerData.job.name] and next(Config.JobInteractions[PlayerData.job.name]) then
         JobMenu.items = Config.JobInteractions[PlayerData.job.name]
     end
 
@@ -77,45 +96,19 @@ end
 
 local function SetupVehicleMenu()
     local VehicleMenu = {
-        id = 'vehicle',
+        id = 'control',
         title = 'Vehicle',
         icon = 'car',
-        items = {}
+        type = 'client',
+        event = 'vehcontrol:openExternal',
+        shouldClose = true,
     }
 
     local ped = PlayerPedId()
     local Vehicle = GetVehiclePedIsIn(ped) ~= 0 and GetVehiclePedIsIn(ped) or getNearestVeh()
-    if Vehicle ~= 0 then
-        VehicleMenu.items[#VehicleMenu.items+1] = Config.VehicleDoors
-        if Config.EnableExtraMenu then VehicleMenu.items[#VehicleMenu.items+1] = Config.VehicleExtras end
+   
 
-        if IsPedInAnyVehicle(ped) then
-            local seatIndex = #VehicleMenu.items+1
-            VehicleMenu.items[seatIndex] = deepcopy(Config.VehicleSeats)
-
-            local seatTable = {
-                [1] = Lang:t("options.driver_seat"),
-                [2] = Lang:t("options.passenger_seat"),
-                [3] = Lang:t("options.rear_left_seat"),
-                [4] = Lang:t("options.rear_right_seat"),
-            }
-
-            local AmountOfSeats = GetVehicleModelNumberOfSeats(GetEntityModel(Vehicle))
-            for i = 1, AmountOfSeats do
-                local newIndex = #VehicleMenu.items[seatIndex].items+1
-                VehicleMenu.items[seatIndex].items[newIndex] = {
-                    id = i - 2,
-                    title = seatTable[i] or Lang:t("options.other_seats"),
-                    icon = 'caret-up',
-                    type = 'client',
-                    event = 'qb-radialmenu:client:ChangeSeat',
-                    shouldClose = false,
-                }
-            end
-        end
-    end
-
-    if #VehicleMenu.items == 0 then
+    if Vehicle == 0 then                 --fixed for new vehcontrol
         if vehicleIndex then
             RemoveOption(vehicleIndex)
             vehicleIndex = nil
@@ -155,23 +148,30 @@ end
 local function SetupRadialMenu()
     FinalMenuItems = {}
     if (IsDowned() and IsPoliceOrEMS()) then
-            FinalMenuItems = {
-                [1] = {
-                    id = 'emergencybutton2',
-                    title = Lang:t("options.emergency_button"),
-                    icon = 'exclamation-circle',
-                    type = 'client',
-                    event = 'police:client:SendPoliceEmergencyAlert',
-                    shouldClose = true,
-                },
-            }
+        FinalMenuItems = {
+            [1] = {
+                id = 'emergencybutton1',
+                title = '10-13A',
+                icon = 'sad-tear',
+                type = 'client',
+                event = 'ps-dispatch:client:officerdown',
+                shouldClose = true,
+            },
+            [2] = {
+                id = 'emergencybutton2',
+                title = '10-13B',
+                icon = 'sad-cry',
+                type = 'client',
+                event = 'ps-dispatch:client:officerdown',
+                shouldClose = true,
+            },
+        }
     else
         SetupSubItems()
         FinalMenuItems = deepcopy(Config.MenuItems)
         for _, v in pairs(DynamicMenuItems) do
             FinalMenuItems[#FinalMenuItems+1] = v
         end
-
     end
 end
 

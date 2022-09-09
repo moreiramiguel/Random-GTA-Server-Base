@@ -1,8 +1,33 @@
 # qb-radialmenu
-Radial Menu Used With QB-Core :arrows_counterclockwise:
+Simple edits of qb-radialmenu to look like nopixels radialmenu. Most of it is just edits but there is some addons to the radialmenu to. Enjoy!
 
-**Now using FontAwesome Icons!**
-To change icons get the name from [FontAwesome](https://fontawesome.com/v5.0/icons?d=gallery&p=2&s=brands,light,regular,solid&m=free) (v5) and use the icon's name in the config.lua for the icon (no `fa-` or `#` just the name like `arrow-right`)
+# Dependencies
+qb-core: https://github.com/qbcore-framework/qb-core
+
+veh-control: https://github.com/Manvaril/vehcontrol
+
+# Preview
+https://streamable.com/3xbdxt
+
+![image](https://user-images.githubusercontent.com/108560629/179027979-53b7a925-159e-4dc7-a3f1-49cd05fed857.png)
+
+# Installation
+```Step 1```
+- Rename ```qb-radialmenu-npstyle``` to > ```qb-radialmenu```
+
+```Step 2```
+- Drop folder into the ```[qb]``` folder
+
+# Credits
+
+https://github.com/KevinGirardx/qb-radialmenu
+
+https://github.com/TonyCapon3/qb-radialmenu
+
+# To-Do
+-- Edit walking styles icons to match Nopixels | Working On
+
+-- Add Expressions similar to nopixels
 
 # License
 

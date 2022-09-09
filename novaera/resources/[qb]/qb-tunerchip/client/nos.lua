@@ -1,7 +1,11 @@
+local QBCore = exports['qb-core']:GetCoreObject()
+
 local NitrousActivated = false
 local NitrousBoost = 35.0
-local VehicleNitrous = {}
-local Fxs = {}
+-- local ScreenEffect = false
+local NosFlames = nil
+VehicleNitrous = {}
+Fxs = {}
 
 local function trim(value)
 	if not value then return nil end
@@ -18,7 +22,6 @@ RegisterNetEvent('smallresource:client:LoadNitrous', function()
     local IsInVehicle = IsPedInAnyVehicle(PlayerPedId())
     local ped = PlayerPedId()
     local veh = GetVehiclePedIsIn(ped)
-
     if not NitrousActivated then
         if IsInVehicle and not IsThisModelABike(GetEntityModel(GetVehiclePedIsIn(ped))) then
             if GetPedInVehicleSeat(veh, -1) == ped then
@@ -52,13 +55,14 @@ CreateThread(function()
         local IsInVehicle = IsPedInAnyVehicle(PlayerPedId())
         local CurrentVehicle = GetVehiclePedIsIn(PlayerPedId())
         if IsInVehicle then
-            local Plate = trim(GetVehicleNumberPlateText(CurrentVehicle))
+            local Plate = GetVehicleNumberPlateText(CurrentVehicle)
             if VehicleNitrous[Plate] ~= nil then
                 if VehicleNitrous[Plate].hasnitro then
-                    if IsControlJustPressed(0, 36) and GetPedInVehicleSeat(CurrentVehicle, -1) == PlayerPedId() then
+                    if IsControlJustPressed(0, 36) then
+                        local speed = GetEntitySpeed(GetVehiclePedIsIn(PlayerPedId(), false)) * 2.2369
                         SetVehicleEnginePowerMultiplier(CurrentVehicle, NitrousBoost)
                         SetVehicleEngineTorqueMultiplier(CurrentVehicle, NitrousBoost)
-                        SetEntityMaxSpeed(CurrentVehicle, 999.0)
+                        SetEntityMaxSpeed(vehicle, 999.0)
                         NitrousActivated = true
 
                         CreateThread(function()
@@ -72,10 +76,11 @@ CreateThread(function()
                                     SetVehicleBoostActive(CurrentVehicle, 0)
                                     SetVehicleEnginePowerMultiplier(CurrentVehicle, LastEngineMultiplier)
                                     SetVehicleEngineTorqueMultiplier(CurrentVehicle, 1.0)
-                                    StopScreenEffect("RaceTurbo")
+                                    -- StopScreenEffect("RaceTurbo")
+                                    -- ScreenEffect = false
                                     for index,_ in pairs(Fxs) do
                                         StopParticleFxLooped(Fxs[index], 1)
-                                        TriggerServerEvent('nitrous:server:StopSync', trim(GetVehicleNumberPlateText(CurrentVehicle)))
+                                        TriggerServerEvent('nitrous:server:StopSync', GetVehicleNumberPlateText(CurrentVehicle))
                                         Fxs[index] = nil
                                     end
                                 end
@@ -92,10 +97,10 @@ CreateThread(function()
                             SetVehicleEngineTorqueMultiplier(veh, 1.0)
                             for index,_ in pairs(Fxs) do
                                 StopParticleFxLooped(Fxs[index], 1)
-                                TriggerServerEvent('nitrous:server:StopSync', trim(GetVehicleNumberPlateText(veh)))
+                                TriggerServerEvent('nitrous:server:StopSync', GetVehicleNumberPlateText(veh))
                                 Fxs[index] = nil
                             end
-                            StopScreenEffect("RaceTurbo")
+                            -- StopScreenEffect("RaceTurbo")
                             TriggerEvent('hud:client:UpdateNitrous', VehicleNitrous[Plate].hasnitro,  VehicleNitrous[Plate].level, false)
                             NitrousActivated = false
                         end
@@ -103,16 +108,14 @@ CreateThread(function()
                 end
             else
                 if not nosupdated then
-                    TriggerEvent('hud:client:UpdateNitrous', false, nil, false)
+                    TriggerEvent('qb-hud:client:UpdateNitrous', false, nil, false)
                     nosupdated = true
                 end
-                StopScreenEffect("RaceTurbo")
             end
         else
             if nosupdated then
                 nosupdated = false
             end
-            StopScreenEffect("RaceTurbo")
             Wait(1500)
         end
         Wait(3)
@@ -149,7 +152,6 @@ CreateThread(function()
             if veh ~= 0 then
                 TriggerServerEvent('nitrous:server:SyncFlames', VehToNet(veh))
                 SetVehicleBoostActive(veh, 1)
-                StartScreenEffect("RaceTurbo", 0.0, 0)
 
                 for _,bones in pairs(p_flame_location) do
                     if GetEntityBoneIndexByName(veh, bones) ~= -1 then

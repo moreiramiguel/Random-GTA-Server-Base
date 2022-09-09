@@ -176,3 +176,9 @@ end)
 --         TriggerClientEvent("consumables:client:UseRedSmoke", source)
 --     end
 -- end)
+----- tuner
+
+QBCore.Functions.CreateUseableItem("stancerkit", function(source)
+    local source = source
+    TriggerClientEvent('renzu_stancer:openstancer', source)
+end)

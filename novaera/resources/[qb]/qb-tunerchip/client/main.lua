@@ -1,5 +1,10 @@
-QBCore = exports['qb-core']:GetCoreObject()
+
+
+-- Code
+local QBCore = exports['qb-core']:GetCoreObject()
+local inTuner = false
 local RainbowNeon = false
+
 LastEngineMultiplier = 1.0
 
 function setVehData(veh,data)
@@ -23,17 +28,16 @@ function resetVeh(veh)
     SetVehicleHandlingFloat(veh, "CHandlingData", "fBrakeBiasFront", 1.0)
 end
 
-RegisterNUICallback('save', function(data, cb)
+RegisterNUICallback('save', function(data)
     QBCore.Functions.TriggerCallback('qb-tunerchip:server:HasChip', function(HasChip)
         if HasChip then
             local ped = PlayerPedId()
             local veh = GetVehiclePedIsUsing(ped)
             setVehData(veh, data)
-            QBCore.Functions.Notify('TunerChip v1.05: Vehicle Tuned!', 'error')
+            QBCore.Functions.Notify('TunerChip v1.05: Vehicle Tuned!')
 
             TriggerServerEvent('qb-tunerchip:server:TuneStatus', QBCore.Functions.GetPlate(veh), true)
         end
-        cb('ok')
     end)
 end)
 
@@ -45,7 +49,7 @@ RegisterNetEvent('qb-tunerchip:client:TuneStatus', function()
     if vehModel ~= 0 then
         QBCore.Functions.TriggerCallback('qb-tunerchip:server:GetStatus', function(status)
             if status then
-                QBCore.Functions.Notify('This Vehicle Has Been Tuned', 'success')
+                QBCore.Functions.Notify('This Vehicle Has Been Tuned')
             else
                 QBCore.Functions.Notify('This Vehicle Has Not Been Tuned', 'error')
             end
@@ -65,20 +69,19 @@ RegisterNUICallback('checkItem', function(data, cb)
     end, data.item)
 end)
 
-RegisterNUICallback('reset', function(_, cb)
+RegisterNUICallback('reset', function(data)
     local ped = PlayerPedId()
     local veh = GetVehiclePedIsUsing(ped)
     resetVeh(veh)
-    QBCore.Functions.Notify('TunerChip v1.05: Vehicle has been reset!', 'error')
-    cb("ok")
-end)
+    QBCore.Functions.Notify('TunerChip v1.05: Vehicle has been reset!')
+end) 
 
 RegisterNetEvent('qb-tunerchip:client:openChip', function()
     local ped = PlayerPedId()
     local inVehicle = IsPedInAnyVehicle(ped)
 
     if inVehicle then
-        QBCore.Functions.Progressbar("connect_laptop", "Tunerchip v1.05: Vehicle Has Been Reset!", 2000, false, true, {
+        QBCore.Functions.Progressbar("connect_laptop", "Connecting Tunerchip v1.05", 2000, false, true, {
             disableMovement = true,
             disableCarMovement = true,
             disableMouse = false,
@@ -99,10 +102,9 @@ RegisterNetEvent('qb-tunerchip:client:openChip', function()
     end
 end)
 
-RegisterNUICallback('exit', function(_, cb)
+RegisterNUICallback('exit', function()
     openTunerLaptop(false)
     SetNuiFocus(false, false)
-    cb('ok')
 end)
 
 local LastRainbowNeonColor = 0
@@ -140,7 +142,7 @@ local RainbowNeonColors = {
     },
 }
 
-RegisterNUICallback('saveNeon', function(data, cb)
+RegisterNUICallback('saveNeon', function(data)
     QBCore.Functions.TriggerCallback('qb-tunerchip:server:HasChip', function(HasChip)
         if HasChip then
             if not data.rainbowEnabled then
@@ -150,8 +152,9 @@ RegisterNUICallback('saveNeon', function(data, cb)
                 if tonumber(data.neonEnabled) == 1 then
                     SetVehicleNeonLightEnabled(veh, 0, true)
                     SetVehicleNeonLightEnabled(veh, 1, true)
-                    SetVehicleNeonLightEnabled(veh, 2, true)
+                    SetVehicleNeonLightEnabled(veh, 2, true) 
                     SetVehicleNeonLightEnabled(veh, 3, true)
+
                     if tonumber(data.r) ~= nil and tonumber(data.g) ~= nil and tonumber(data.b) ~= nil then
                         SetVehicleNeonLightsColour(veh, tonumber(data.r), tonumber(data.g), tonumber(data.b))
                     else
@@ -176,7 +179,7 @@ RegisterNUICallback('saveNeon', function(data, cb)
                         SetVehicleNeonLightEnabled(veh, 1, true)
                         SetVehicleNeonLightEnabled(veh, 2, true)
                         SetVehicleNeonLightEnabled(veh, 3, true)
-                        CreateThread(function()
+                        Citizen.CreateThread(function()
                             while true do
                                 if RainbowNeon then
                                     if (LastRainbowNeonColor + 1) ~= 7 then
@@ -190,7 +193,7 @@ RegisterNUICallback('saveNeon', function(data, cb)
                                     break
                                 end
 
-                                Wait(350)
+                                Citizen.Wait(350)
                             end
                         end)
                     end
@@ -203,14 +206,13 @@ RegisterNUICallback('saveNeon', function(data, cb)
                 end
             end
         end
-        cb('ok')
     end)
 end)
 
 local RainbowHeadlight = false
 local RainbowHeadlightValue = 0
 
-RegisterNUICallback('saveHeadlights', function(data, cb)
+RegisterNUICallback('saveHeadlights', function(data)
     QBCore.Functions.TriggerCallback('qb-tunerchip:server:HasChip', function(HasChip)
         if HasChip then
             if data.rainbowEnabled then
@@ -249,7 +251,6 @@ RegisterNUICallback('saveHeadlights', function(data, cb)
                 SetVehicleHeadlightsColour(veh, value)
             end
         end
-        cb('ok')
     end)
 end)
 
@@ -266,8 +267,16 @@ RegisterNUICallback('SetStancer', function(data, cb)
     local fRotation = data.fRotation * 100 / 1000
     local rOffset = data.rOffset * 100 / 1000
     local rRotation = data.rRotation * 100 / 1000
+
+    print(fOffset)
+    print(fRotation)
+    print(rOffset)
+    print(rRotation)
+
     local ped = PlayerPedId()
     local veh = GetVehiclePedIsIn(ped)
+
     exports["vstancer"]:SetWheelPreset(veh, -fOffset, -fRotation, -rOffset, -rRotation)
-    cb("ok")
 end)
+
+

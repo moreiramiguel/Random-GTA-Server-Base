@@ -4,10 +4,10 @@ var headlightVal = 0;
 var RainbowNeon = false;
 var RainbowHeadlight = false;
 
-$(document).ready(function(){
+$(document).ready(function () {
     $('.container').hide();
 
-    window.addEventListener('message', function(event){
+    window.addEventListener('message', function (event) {
         var eventData = event.data;
 
         if (eventData.action == "ui") {
@@ -18,15 +18,15 @@ $(document).ready(function(){
     });
 });
 
-$(document).on('keydown', function() {
-    switch(event.keyCode) {
+$(document).on('keydown', function () {
+    switch (event.keyCode) {
         case 27:
             QBTuner.Close();
             break;
     }
 });
 
-$(document).on('click', '#save', function(){
+$(document).on('click', '#save', function () {
     $.post('https://qb-tunerchip/save', JSON.stringify({
         boost: $("#boost-slider").val(),
         acceleration: $("#acceleration-slider").val(),
@@ -36,43 +36,43 @@ $(document).on('click', '#save', function(){
     }));
 });
 
-$(document).on('click', '#reset', function(){
+$(document).on('click', '#reset', function () {
     $.post('https://qb-tunerchip/reset');
 });
 
-$(document).on('click', '#cancel', function(){
+$(document).on('click', '#cancel', function () {
     QBTuner.Close();
 });
 
-$(document).on('click', "#neon", function(){
+$(document).on('click', "#neon", function () {
     $(".tunerchip-block").css("display", "none");
     $(".headlights-block").css("display", "none");
     $(".stancer-block").css("display", "none");
     $(".neon-block").css("display", "block");
 })
 
-$(document).on('click', "#headlights", function(){
+$(document).on('click', "#headlights", function () {
     $(".tunerchip-block").css("display", "none");
     $(".neon-block").css("display", "none");
     $(".stancer-block").css("display", "none");
     $(".headlights-block").css("display", "block");
 })
 
-$(document).on('click', "#tuning", function(){
+$(document).on('click', "#tuning", function () {
     $(".headlights-block").css("display", "none");
     $(".neon-block").css("display", "none");
     $(".stancer-block").css("display", "none");
     $(".tunerchip-block").css("display", "block");
 });
 
-$(document).on('click', "#stancer", function(){
+$(document).on('click', "#stancer", function () {
     $(".headlights-block").css("display", "none");
     $(".neon-block").css("display", "none");
     $(".tunerchip-block").css("display", "none");
     $(".stancer-block").css("display", "block");
 });
 
-$(document).on('click', "#save-neon", function(){
+$(document).on('click', "#save-neon", function () {
     if (RainbowNeon) {
         $.post('https://qb-tunerchip/saveNeon', JSON.stringify({
             neonEnabled: $("#neon-slider").val(),
@@ -92,14 +92,14 @@ $(document).on('click', "#save-neon", function(){
     }
 })
 
-$(document).on('click', '#save-headlights', function(){
+$(document).on('click', '#save-headlights', function () {
     $.post('https://qb-tunerchip/saveHeadlights', JSON.stringify({
         value: headlightVal,
         rainbowEnabled: RainbowHeadlight,
     }))
 });
 
-$(document).on('click', '#save-stancer', function(){
+$(document).on('click', '#save-stancer', function () {
     var front_offset = $("#front-offset").val();
     var front_rotation = $("#front-rotation").val();
     var rear_offset = $("#rear-offset").val();
@@ -113,7 +113,7 @@ $(document).on('click', '#save-stancer', function(){
     }));
 });
 
-$(document).on('click', ".neon-software-color-pallete-color", function(){
+$(document).on('click', ".neon-software-color-pallete-color", function () {
     var headlightValue = $(this).data('value');
 
     if (headlightValue === "rainbow") {
@@ -126,12 +126,12 @@ $(document).on('click', ".neon-software-color-pallete-color", function(){
         var r = $(this).data('r')
         var g = $(this).data('g')
         var b = $(this).data('b')
-    
+
         $("#color-r").val(r)
         $("#color-g").val(g)
         $("#color-b").val(b)
-    
-    
+
+
         if (headlightValue != null) {
             headlightVal = headlightValue
             var colorValue = $(this).css("background-color");
@@ -143,15 +143,15 @@ $(document).on('click', ".neon-software-color-pallete-color", function(){
     }
 });
 
-QBTuner.Open = function() {
-    $.post('https://qb-tunerchip/checkItem', JSON.stringify({item: "tunerlaptop"}), function(hasItem){
+QBTuner.Open = function () {
+    $.post('https://qb-tunerchip/checkItem', JSON.stringify({ item: "tunerlaptop" }), function (hasItem) {
         if (hasItem) {
             $('.container').fadeIn(250);
         }
     })
 }
 
-QBTuner.Close = function() {
+QBTuner.Close = function () {
     $('.container').fadeOut(250);
     $.post('https://qb-tunerchip/exit');
 }

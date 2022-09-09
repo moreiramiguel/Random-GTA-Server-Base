@@ -13,6 +13,7 @@ shared_scripts {
 }
 
 client_scripts {
+    'client/blips.lua',
     'client/main.lua',
     'client/clothing.lua',
     'client/trunk.lua',
