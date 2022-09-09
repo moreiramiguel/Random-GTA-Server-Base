@@ -65,7 +65,7 @@ body::-webkit-scrollbar { display: none; }
 
 
 .button:hover {
-	border-left: 8px solid red;
+	border-left: 8px solid rgb(0, 234, 255);
 	background: rgba(0, 0, 0);
 	color: white;
 }
