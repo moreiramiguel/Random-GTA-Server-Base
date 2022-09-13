@@ -2,7 +2,7 @@ Config = {}
 
 --Config.WeedField = vector3(311.286, 4304.369, 46.82) -- Location of the weed farm by the lake
 
-Config.GrowRate = 40 -- In how many seconds it takes to update the plant (At 100% rate plant will grow 1% every update)
+Config.GrowRate = 3 -- In how many seconds it takes to update the plant (At 100% rate plant will grow 1% every update)
 
 Config.SmokeontheWaterItems = {                      -- Items sold at Some on the Water shop
     [1] = { name = "marijuana_baggies",         price = 5,   amount = 999, info = {}, type = "item", slot = 1 },
